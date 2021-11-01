@@ -1,5 +1,6 @@
 require('dotenv').config();
-
+const mongoose = require('mongoose'),
+URI = 'mongodb+srv://fccmongodbmongoose.zdwya.mongodb.net/fccMongodbMongoose';
 
 let Person;
 
@@ -50,6 +51,10 @@ const queryChain = (done) => {
 
   done(null /*, data*/);
 };
+//////////////////////////////////////////////////////////////////////////
+mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
