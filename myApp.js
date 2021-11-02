@@ -1,8 +1,28 @@
 require('dotenv').config();
-const mongoose = require('mongoose'),
-URI = 'mongodb+srv://fccmongodbmongoose.zdwya.mongodb.net/fccMongodbMongoose';
 
-let Person;
+const URI = 'mongodb+srv://fccmongodbmongoose.zdwya.mongodb.net/fccMongodbMongoose',
+mongoose = require('mongoose'),
+{ Schema, model } = mongoose;
+
+// task 1 create new schema for
+// - Person Prototype -
+// --------------------
+// name : string [required]
+// age :  number
+// favoriteFoods : array of strings (*)
+const personSchema = new Schema({
+  name:  {
+    type: String, unique: false, required: true
+  }, // String is shorthand for {type: String}
+  age: Number,
+  funny: Boolean,
+  favoriteFoods: [String],
+  alive: Boolean
+});
+
+//create a model called Person from the personSchema
+//convert our blogSchema into a Model we can work with i.e. pass it into mongoose.model(modelName, schema):
+const Person = model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
@@ -53,8 +73,7 @@ const queryChain = (done) => {
 };
 //////////////////////////////////////////////////////////////////////////
 mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
-
+///////////////////////////////////////////////////////////////////////////
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
